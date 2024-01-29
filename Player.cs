@@ -91,7 +91,7 @@ public class Player
 
     public void TakeDamage(int amount)
     {
-        CurrentHealth -= amount; // Change this line
+        CurrentHealth -= amount; 
         if (CurrentHealth < 0) CurrentHealth = 0;
 
         Console.WriteLine($"You took {amount} damage. You have {CurrentHealth} health left");
