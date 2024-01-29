@@ -9,14 +9,15 @@ public class Inventory
 		Items = new List<Item>();
 	}
 
-	public void AddItem(Item item)
+	public bool AddItem(Item item)
 	{
 		if (Items.Contains(item))
 		{
-			return;
+			return false;
 		}
 
         Items.Add(item);
+		return true;
 	}
 
 	public void RemoveItem(Item item)

@@ -8,6 +8,8 @@ public class Player
 	private const int playerDefaultMinDamage = 5;
 	private const int playerDefaultMaxDamage = 15;
 
+    private HashSet<Item> processedItems = new HashSet<Item>();
+
     public string Name { get; private set; }
 	public int MaxHealth { get; private set; }
 	public int CurrentHealth { get; set; }
@@ -28,27 +30,28 @@ public class Player
 		}
 	}
 
-	public void TakeItem(Item item)
-	{
-		Inventory.AddItem(item);
+    public void TakeItem(Item item)
+    {
+        bool isNewItem = Inventory.AddItem(item);
 
-        if (Inventory.Items.Contains(Item.Belt))
+        if (isNewItem && processedItems.Add(item))
         {
-            
-            MaxHealth += 20;
-            Console.WriteLine("You equipped the Belt of the Champion, you gained 20 HP and 5 Attack Power");
-        }
+            if (item == Item.Belt)
+            {
+                MaxHealth += 20;
+                Console.WriteLine("You equipped the Belt of the Champion, you gained 20 HP and 5 Attack Power");
+            }
 
-        if (Inventory.Items.Contains(Item.Horn))
-        {
-            
-            MaxHealth += 50;
-            Console.WriteLine("You equipped the Horn of White Hart, you gained 50 HP");
-        }
-        if (Inventory.Items.Contains(Item.Sword))
-        {
+            if (item == Item.Horn)
+            {
+                MaxHealth += 50;
+                Console.WriteLine("You equipped the Horn of White Hart, you gained 50 HP");
+            }
 
-            Console.WriteLine("You now have a Valeryian Sword in your hands, your Attack Power is increased by 10");
+            if (item == Item.Sword)
+            {
+                Console.WriteLine("You now have a Valyrian Sword in your hands, your Attack Power is increased by 10");
+            }
         }
     }
 
