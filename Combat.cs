@@ -16,7 +16,7 @@ public class Combat
 
     #region VARIABLES
 
-    private const int maxNumberOfEnemies = 1;
+    private const int maxNumberOfEnemies = 5;
 
     private bool _isOngoing;
 
